@@ -5,6 +5,7 @@ python -m pip install --upgrade pip
 
 pip install notebook
 pip install jupyter
+pip install pandas
 pip install matplotlib
 pip install transitions
 pip install graphviz pygraphviz
