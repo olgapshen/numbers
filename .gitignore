@@ -1,1 +1,11 @@
+*/.ipynb_checkpoints/*
+*/__pycache__/
+*.xlsx
+*.csv
+*.~*
+*.log
+*.bak
+*.pdf
+
 .venv
+logs/
