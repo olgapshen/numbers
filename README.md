@@ -40,7 +40,7 @@ source .venv/bin/activate
 Установите необходимые пакеты уровня ОС:
 
 ```sh
-sudo zypper in graphviz graphviz-devel
+sudo zypper in graphviz graphviz-devel plantuml
 ```
 
 Откройте выбранный вами порт `firewall`-а. Пусть это будет `8888`:
