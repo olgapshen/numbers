@@ -54,66 +54,21 @@ class DivMul(Abaq):
         # Делим большее на меньшее, или на себя
         assert(not abak.isBigger(self))
 
+        rank = Abaq(self.shape, self.name)
         cell = Abaq(self.shape, self.name)
-        rest = Abaq(self.shape, self.name)
         state = Abaq(self.shape, self.name)
-        reg = Abaq(self.shape, self.name)
 
-        #print('----')
-        #print(self.getDecimal())
-        #print(cell.getDecimal())
-        #print(abak.getDecimal())
-        #print(state.getDecimal())
-        
+        rank.rank(self)
         self.preserve()
-        while(self.hasItems()):
+        while(rank.hasItems()):
             while(abak.isBigger(cell)):
                 self.shl(cell)
-    
-            print('----')
-            print('self: ' + str(self.getDecimal()))
-            print('cell: ' + str(cell.getDecimal()))
-            print('rest: ' + str(rest.getDecimal()))
-            print('abak: ' + str(abak.getDecimal()))
-            print('state: ' + str(state.getDecimal()))
-            print('reg: ' + str(reg.getDecimal()))
+                rank.pop()
 
             cell.dec(abak, rest)
-            reg.shl()
-            reg.add(cell)
+            state.shl()
+            state.add(cell)
+            cell.apply(rest)
 
-            print('----')
-            print('self: ' + str(self.getDecimal()))
-            print('cell: ' + str(cell.getDecimal()))
-            print('rest: ' + str(rest.getDecimal()))
-            print('abak: ' + str(abak.getDecimal()))
-            print('state: ' + str(state.getDecimal()))
-            print('reg: ' + str(reg.getDecimal()))
-        
         self.restore()
-        
-        #abak.preserve()
-        #abak.shr(cell)
-        #self.inc(cell)
-
-        #while(abak.hasItems()):
-        #    self.preserve()
-        #    state.shl()
-        #    self.apply(state)
-        #    abak.shr(cell)            
-        #    self.inc(cell)
-
-        #abak.restore()
-        #abak.preserve()
-
-        #state.apply(self)
-        #cell.clear()        
-        #abak.shr(cell)
-        
-        #while(abak.hasItems()):
-        #    self.restore()
-        #    state.add(self)
-        #    abak.shr(cell)
-
-        #self.apply(state)
-        #abak.restore()
+        self.apply(state)
