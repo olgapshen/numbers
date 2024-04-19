@@ -15,7 +15,7 @@ class DivMul(Abaq):
         cell = Abaq(shape, self.name)
         state = Abaq(self.shape, self.name)
         state.apply(self)
-        
+
         abak.preserve()
         abak.shr(cell)
         self.inc(cell)
@@ -32,9 +32,9 @@ class DivMul(Abaq):
         abak.preserve()
 
         state.apply(self)
-        cell.clear()        
+        cell.clear()
         abak.shr(cell)
-        
+
         while(abak.hasItems()):
             self.restore()
             state.add(self)
